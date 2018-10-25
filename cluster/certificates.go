@@ -21,7 +21,7 @@ type RotateCertificatesFlags struct {
 }
 
 func SetUpAuthentication(ctx context.Context, kubeCluster, currentCluster *Cluster, fullState *FullState) error {
-	if kubeCluster.Authentication.Strategy == X509AuthenticationProvider {
+	if kubeCluster.AuthnStrategies[AuthnX509Provider] {
 		kubeCluster.Certificates = fullState.DesiredState.CertificatesBundle
 		return nil
 	}
